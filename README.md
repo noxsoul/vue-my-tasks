@@ -1,4 +1,4 @@
-# pnc-tasks
+# vue-my-tasks
 
 ## Project setup
 ```
