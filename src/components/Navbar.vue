@@ -1,8 +1,7 @@
 <template>
   <nav>
     <v-toolbar flat app>
-      <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer">
-      </v-toolbar-side-icon>
+      <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="text-uppercase grey--text">
         <span class="font-weight-light">My</span>
         <span>Task Admin</span>
@@ -14,8 +13,17 @@
       </v-btn>
     </v-toolbar>
 
-    <v-navigation-drawer v-model="drawer" app class="indigo">
-        <p>test</p>
+    <v-navigation-drawer app v-model="drawer" class="primary">
+      <v-list>
+        <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
+          <v-list-tile-action>
+            <v-icon class="white--text">{{ link.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-content-tile>
+            <v-list-tile-title class="white--text">{{ link.text }}</v-list-tile-title>
+          </v-list-content-tile>
+        </v-list-tile>
+      </v-list>
     </v-navigation-drawer>
   </nav>
 </template>
@@ -24,9 +32,15 @@
 export default {
   name: "Navbar",
   data() {
-      return {
-          drawer: false
-      }
+    return {
+      drawer: false,
+      links: [
+        { icon: 'dashboard', text: 'Dashboard', route: '/'},
+        { icon: 'folder', text: 'My Projects', route: '/projects'},
+        { icon: 'assignment', text: 'Tasks', route: '/tasks'},
+        { icon: 'person', text: 'Users', route: '/users'},
+      ]
+    };
   }
 };
 </script>
